@@ -66,6 +66,7 @@
     </form>
 </div>
 <script src="${applicationScope.APP_PATH}/jquery/jquery-2.1.1.min.js"></script>
+<script src="${applicationScope.APP_PATH}/jquery/layer/layer.js"></script>
 <script src="${applicationScope.APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
 <script>
 
@@ -74,11 +75,11 @@
         var loginAcct = $("#userNameId").val();
         var pwd = $("#pwdId").val();
         if (loginAcct == "") {
-            alert("用户名不能为空！");
+            layer.msg("用户名不能为空！", {time:1000, icon:5, shift:6});
             return;
         }
         if (pwd == "" ) {
-            alert("密码不能为空！");
+            layer.msg("密码不能为空！", {time:1000, icon:5, shift:6});
             return;
         }
 
@@ -102,8 +103,6 @@
                  },
             dataType:'JSON',
             success:function (value) {
-                debugger;
-                console.info(value);
                 if (value.resultBool) {
                     //跳转到登录成功页面：
                     var type = $(":selected").val();
@@ -115,7 +114,7 @@
                     }
                 } else {
                     //跳转到登录页面：
-                    alert(value.message);
+                    layer.msg(value.message, {time:1000, icon:5, shift:6});
                 }
                /* var type = $(":selected").val();
                 if ( type == "user" ) {

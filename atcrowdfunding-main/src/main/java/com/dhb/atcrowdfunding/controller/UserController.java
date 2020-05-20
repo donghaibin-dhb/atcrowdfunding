@@ -42,6 +42,7 @@ public class UserController {
         return "main";
     }
 
+
     /**跳转到登录页面：*/
     @RequestMapping("/login")
     public String forwardLoginPage(){
