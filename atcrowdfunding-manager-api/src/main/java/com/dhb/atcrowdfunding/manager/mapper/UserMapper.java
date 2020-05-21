@@ -1,6 +1,7 @@
 package com.dhb.atcrowdfunding.manager.mapper;
 
 import com.dhb.atcrowdfunding.bean.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
-    List<User> selectAll();
+    List<User> selectAll(@Param("condition") String condition);
 
     int updateByPrimaryKey(User record);
     /* *
@@ -22,4 +23,7 @@ public interface UserMapper {
      * @return com.dhb.atcrowdfunding.bean.User
      */
     User queryUserByLoginAcct(User user);
+
+    /**批量删除用户：*/
+    Integer deleteBatchWithUser(List<Integer> ids);
 }

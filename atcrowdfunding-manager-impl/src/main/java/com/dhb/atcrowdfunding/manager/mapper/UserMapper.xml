@@ -35,9 +35,22 @@
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+
+
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, loginacct, userpswd, username, email, createtime
     from t_user
+    <where>
+    <if test="condition != null and condition != ''">
+            loginacct like concat('%',#{condition},'%')
+            or
+            username like concat('%',#{condition},'%')
+            or
+            email    like concat('%',#{condition},'%')
+    </if>
+    </where>
   </select>
 
 

@@ -29,11 +29,26 @@
 
 
 
-
+  <!--根据用户id删除用户：-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+
+  <!--批量删除用户-->
+  <delete id="deleteBatchWithUser" >
+    delete  from t_user
+    <where>
+       id in
+      <foreach collection="list" item="id" separator="," open="(" close=")">
+           #{id}
+      </foreach>
+    </where>
+  </delete>
+
+
+  <!--插入用户：-->
   <insert id="insert" parameterType="com.dhb.atcrowdfunding.bean.User" >
     insert into t_user (id, loginacct, userpswd, 
       username, email, createtime
@@ -42,6 +57,8 @@
       #{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createtime,jdbcType=CHAR}
       )
   </insert>
+
+  <!--根据主键修改用户信息：-->
   <update id="updateByPrimaryKey" parameterType="com.dhb.atcrowdfunding.bean.User" >
     update t_user
     set loginacct = #{loginacct,jdbcType=VARCHAR},
@@ -56,8 +73,19 @@
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--查询用户信息：-->
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, loginacct, userpswd, username, email, createtime
     from t_user
+    <where>
+        <if test="condition != null and condition != ''">
+            loginacct like concat('%',#{condition},'%')
+          or
+            username like concat('%',#{condition},'%')
+          or
+            email like concat('%',#{condition},'%')
+        </if>
+    </where>
   </select>
 </mapper>

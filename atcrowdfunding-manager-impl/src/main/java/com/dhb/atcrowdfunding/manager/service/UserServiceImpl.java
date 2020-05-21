@@ -9,6 +9,8 @@ import com.dhb.atcrowdfunding.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName: UserServiceImpl
  * @Description:
@@ -42,5 +44,55 @@ public class UserServiceImpl implements UserService {
             throw new PasswordErrorException(Const.LOGIN_USERPSWD_ERROR);
         }
         return userResult;
+    }
+
+    /* *
+     * @Author: dong_hb
+     * @Description: 查询用户列表
+     * @Date: 10:22 上午 2020/5/21
+     * @Param []
+     * @return java.util.List<com.dhb.atcrowdfunding.bean.User>
+     */
+    @Override
+    public List<User> findUserList(String condition) {
+        List<User> users = userMapper.selectAll(condition);
+        return users;
+    }
+    
+    /* *
+     * @Author: dong_hb
+     * @Description: 新增用户管理员
+     * @Date: 4:21 下午 2020/5/21
+     * @Param [user]
+     * @return java.lang.Integer
+     */
+    @Override
+    public Integer addUser(User user) {
+        user.setUserpswd(MD5Util.digest("123456"));
+        return userMapper.insert(user);
+    }
+
+    /* *
+     * @Author: dong_hb
+     * @Description: 删除用户信息
+     * @Date: 5:32 下午 2020/5/21
+     * @Param [id]
+     * @return java.lang.Integer
+     */
+    @Override
+    public Integer deleteUserById(Integer id) {
+        return userMapper.deleteByPrimaryKey(id);
+    }
+
+    /* *
+     * @Author: dong_hb
+     * @Description: 批量删除用户
+     * @Date: 8:40 下午 2020/5/21
+     * @Param [ids]
+     * @return java.lang.Integer
+     */
+    @Override
+    public Integer deleteBatchWithUser(List<Integer> ids) {
+        return userMapper.deleteBatchWithUser(ids);
     }
 }

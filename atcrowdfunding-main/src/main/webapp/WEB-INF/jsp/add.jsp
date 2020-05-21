@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: donghb
-  Date: 2020/5/19
-  Time: 3:47 下午
+  Date: 2020/5/21
+  Time: 3:39 下午
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh_cn">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="GB18030">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -18,16 +18,11 @@
     <link rel="stylesheet" href="${applicationScope.APP_PATH}/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${applicationScope.APP_PATH}/css/font-awesome.min.css">
     <link rel="stylesheet" href="${applicationScope.APP_PATH}/css/main.css">
+    <link rel="stylesheet" href="${applicationScope.APP_PATH}/css/doc.min.css">
     <style>
         .tree li {
             list-style-type: none;
             cursor:pointer;
-        }
-        .tree-closed {
-            height : 40px;
-        }
-        .tree-expanded {
-            height : auto;
         }
     </style>
 </head>
@@ -37,22 +32,20 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <div><a class="navbar-brand" style="font-size:32px;" href="#">众筹平台 - 控制面板</a></div>
+            <div><a class="navbar-brand" style="font-size:32px;" href="user.html">众筹平台 - 用户维护</a></div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li style="padding-top:8px;">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon glyphicon-user"></i> ${sessionScope.loginUser.username} <span class="caret"></span>
+                            <i class="glyphicon glyphicon-user"></i> 张三 <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
                             <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
                             <li class="divider"></li>
-                            <%--<li><a href="index.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>--%>
-                            <%--退出系统：--%>
-                            <li><a href="${applicationScope.APP_PATH}/loginout.do"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
+                            <li><a href="login.html"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
                         </ul>
                     </div>
                 </li>
@@ -63,11 +56,12 @@
                 </li>
             </ul>
             <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="查询">
+                <input type="text" class="form-control" placeholder="Search...">
             </form>
         </div>
     </div>
 </nav>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -76,14 +70,14 @@
                     <li class="list-group-item tree-closed" >
                         <a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
                     </li>
-                    <li class="list-group-item tree-closed">
+                    <li class="list-group-item">
                         <span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span>
-                        <ul style="margin-top:10px;display:none;">
+                        <ul style="margin-top:10px;">
                             <li style="height:30px;">
-                                <a href="${applicationScope.APP_PATH}/user/user.htm"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
+                                <a href="user.html" style="color:red;"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
                             </li>
                             <li style="height:30px;">
-                                <a href="role.html"><i class="glyphicon glyphicon-king"></i> 角色维护</a>
+                                <a href="role.html"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a>
                             </li>
                             <li style="height:30px;">
                                 <a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a>
@@ -137,38 +131,62 @@
             </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">控制面板</h1>
-
-            <div class="row placeholders">
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
-                </div>
-                <div class="col-xs-6 col-sm-3 placeholder">
-                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>Label</h4>
-                    <span class="text-muted">Something else</span>
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">数据列表</a></li>
+                <li class="active">新增</li>
+            </ol>
+            <div class="panel panel-default">
+                <div class="panel-heading">表单数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+                <div class="panel-body">
+                    <form role="form" method="post" action="${applicationScope.APP_PATH}/user/addUser.do" id="formId">
+                        <div class="form-group" >
+                            <label for="loginacctId">登陆账号</label>
+                            <input type="text" class="form-control" id="loginacctId" placeholder="请输入登陆账号" name="loginacct ">
+                        </div>
+                        <div class="form-group">
+                            <label for="usernameId1">用户名称</label>
+                            <input type="text" class="form-control" id="usernameId1" placeholder="请输入用户名称" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">邮箱地址</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入邮箱地址" name="email" >
+                            <p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
+                        </div>
+                        <button type="button" class="btn btn-success" id="addID"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+                        <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i> 重置</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<%--
-     将javascript放置到css下面，是为了提高页面的响应效率
-     而具体的交互，可以在客户具体操作的时候，在加载，
-     这样用户就感受不到。
---%>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">帮助</h4>
+            </div>
+            <div class="modal-body">
+                <div class="bs-callout bs-callout-info">
+                    <h4>测试标题1</h4>
+                    <p>测试内容1，测试内容1，测试内容1，测试内容1，测试内容1，测试内容1</p>
+                </div>
+                <div class="bs-callout bs-callout-info">
+                    <h4>测试标题2</h4>
+                    <p>测试内容2，测试内容2，测试内容2，测试内容2，测试内容2，测试内容2</p>
+                </div>
+            </div>
+            <!--
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
 <script src="${applicationScope.APP_PATH}/jquery/jquery-2.1.1.min.js"></script>
 <script src="${applicationScope.APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
 <script src="${applicationScope.APP_PATH}/script/docs.min.js"></script>
@@ -184,6 +202,46 @@
                 }
             }
         });
+
+
+        //点击新增按钮，提交表单：
+        $("#addID").click(function () {
+            //登录账号：
+            var loginacct = $("#loginacctId").val();
+            //用户名称：使用usernameId死活就是undifined;
+            var username = $("#usernameId1").val();
+            //邮箱：
+            var email = $("#exampleInputEmail1").val();
+            //获取form表单的URL：
+            var formUrl = $("#formId").attr("action");
+            $.ajax({
+                type:'POST',
+                url:formUrl,
+                data:{
+                    'loginacct':loginacct,
+                    'username':username,
+                    'email':email
+                },
+                dataType:'JSON',
+                before:function () {
+                    //对表单进行校验：
+                },
+                success:function (value) {
+                    if (value.resultBool) {
+                        window.location.href = "${applicationScope.APP_PATH}/user/user.htm";
+                    }
+                }
+            });
+        });
+
+
+        //删除，以及批量删除问题：
+
+
+
+
+
+
     });
 </script>
 </body>

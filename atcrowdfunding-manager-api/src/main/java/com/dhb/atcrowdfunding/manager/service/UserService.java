@@ -2,6 +2,8 @@ package com.dhb.atcrowdfunding.manager.service;
 
 import com.dhb.atcrowdfunding.bean.User;
 
+import java.util.List;
+
 public interface UserService {
     
     /* *
@@ -14,5 +16,15 @@ public interface UserService {
     User queryUserByLoginAcct(User user);
 
 
+    /**查询用户列表*/
+    List<User> findUserList(String condition);
 
+    /**新增管理员*/
+    Integer addUser(User user);
+
+    /**删除用户信息*/
+    Integer deleteUserById(Integer id);
+
+    /**批量删除用户：*/
+    Integer deleteBatchWithUser(List<Integer> ids);
 }
