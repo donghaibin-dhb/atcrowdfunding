@@ -26,7 +26,7 @@ public class BaseController {
         threadLocal.get().put(successKey,successVal);
     }
 
-    /**设置消息的信息到map中：*/
+    /**设置消息的信息到map中： */
     protected void messageMethod(String messageInfo,String messageVal){
         threadLocal.get().put(messageInfo,messageVal);
     }
